@@ -6,15 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".Activity.AgentRideActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/frMainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:layout="@layout/fragment_home" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottomnav"
+        android:elevation="@dimen/_22mdp"
         app:labelVisibilityMode="unlabeled"
-        android:elevation="@dimen/_28mdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottomnav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
