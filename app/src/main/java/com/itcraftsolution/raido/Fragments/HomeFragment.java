@@ -14,6 +14,7 @@ import com.itcraftsolution.raido.R;
 import com.itcraftsolution.raido.databinding.FragmentHomeBinding;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class HomeFragment extends Fragment {
 
@@ -48,9 +49,17 @@ public class HomeFragment extends Fragment {
         binding.AdminNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                String carName = binding.AdminCarName.getText().toString();
+//                int vehicleNumber = Integer.parseInt(binding.AdminVehicalNumber.getText().toString());
+//                int phoneNumber = Integer.parseInt(binding.AdminNumber.getText().toString());
+//                String date = binding.AdminDate.getText().toString();
+//                int emptySeat = Integer.parseInt(binding.AdminSeats.getText().toString());
+//                int totalJourney = Integer.parseInt(binding.AdminHours.getText().toString());
                 getParentFragmentManager().beginTransaction().replace(R.id.frMainContainer, new DetailFragment()).addToBackStack(null).commit();
             }
         });
+
+
 
         return binding.getRoot();
     }

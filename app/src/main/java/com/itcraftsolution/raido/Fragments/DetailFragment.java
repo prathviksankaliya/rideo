@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
@@ -45,6 +46,31 @@ public class DetailFragment extends Fragment {
                 binding.AdminJourneyLocChips.setText("");
             }
         });
+
+        binding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSelections();
+            }
+        });
         return binding.getRoot();
+    }
+
+    private void showSelections()
+    {
+        int count = binding.AdminLocationChip.getChildCount();
+
+        String s = null;
+        for(int i = 0; i < count; i++)
+        {
+            Chip chip = (Chip) binding.AdminLocationChip.getChildAt(i);
+            if(s == null)
+            {
+                    s = chip.getText().toString();
+            }else{
+                s += ", " + chip.getText().toString();
+            }
+        }
+        Toast.makeText(requireContext(), ""+s, Toast.LENGTH_SHORT).show();
     }
 }
