@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16mdp"
+        android:fontFamily="@font/opensansbold"
+        android:text="Choose the Profile"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_22font_mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cdUserRide"
+        android:layout_width="@dimen/_150mdp"
+        android:layout_height="@dimen/_120mdp"
+        android:background="@drawable/rounded_cardview"
+        android:elevation="@dimen/_28mdp"
+        app:cardBackgroundColor="@color/green"
+        app:cardElevation="@dimen/_20mdp"
+        app:cardCornerRadius="@dimen/_20mdp"
+        app:layout_constraintBottom_toTopOf="@+id/cdAgentRide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ride \nBooking (User)"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="@dimen/_22font_mdp"
+            android:fontFamily="@font/opensansbold"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cdAgentRide"
+        android:layout_width="@dimen/_150mdp"
+        android:layout_height="@dimen/_120mdp"
+        android:background="@drawable/rounded_cardview"
+        app:cardElevation="@dimen/_20mdp"
+        app:cardBackgroundColor="@color/green"
+        app:cardCornerRadius="@dimen/_20mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cdUserRide" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ride \nAgent \n (Car Owner)"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="@dimen/_22font_mdp"
+            android:fontFamily="@font/opensansbold"
+            />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
