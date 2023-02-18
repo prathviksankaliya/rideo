@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:menuCategory="secondary"
+        android:id="@+id/userNavHome"
+        android:icon="@drawable/home"
+        />
+
+    <item
+        android:menuCategory="secondary"
+        android:id="@+id/userNavNotification"
+        android:icon="@drawable/notification"
+        />
+
+    <item
+        android:menuCategory="secondary"
+        android:id="@+id/userNavAddCar"
+        android:icon="@drawable/car"
+        />
+
+    <item
+        android:menuCategory="secondary"
+        android:id="@+id/userNavProfile"
+        android:icon="@drawable/user"
+        />
+</menu>

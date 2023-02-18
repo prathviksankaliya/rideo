@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.NotificationFragment">
+    tools:context=".Fragments.UserDetailRideFragment">
 
     <ImageView
         android:id="@+id/imageView"
@@ -21,10 +21,10 @@
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12mdp"
         android:layout_marginEnd="@dimen/_14mdp"
         android:fontFamily="@font/opensansbold"
-        android:layout_marginStart="@dimen/_12mdp"
-        android:text="Notifications"
+        android:text="Active Rides"
         android:textColor="@color/black"
         android:textSize="@dimen/_18font_mdp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -33,12 +33,9 @@
         app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAdminNotification"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        tools:listitem="@layout/rv_admin_notification"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16mdp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

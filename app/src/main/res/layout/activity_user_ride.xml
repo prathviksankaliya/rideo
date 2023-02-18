@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".Activity.UserRideActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/frUserMainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bNavUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:layout="@layout/fragment_notification" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bNavUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_22mdp"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/user_bottom_nav" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -91,6 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Add"
+        android:fontFamily="@font/opensansbold"
         app:layout_constraintBottom_toBottomOf="@+id/textInputLayout7"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout6"
         app:layout_constraintTop_toTopOf="@+id/textInputLayout7" />
@@ -100,6 +101,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16mdp"
+
         app:layout_constraintEnd_toEndOf="@+id/btnAdd"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout7"
@@ -111,6 +113,7 @@
         android:layout_height="wrap_content"
         android:paddingVertical="@dimen/_9mdp"
         android:text="Save"
+        android:fontFamily="@font/opensansbold"
         android:layout_marginTop="@dimen/_20mdp"
         app:layout_constraintEnd_toEndOf="@+id/AdminLocationChip"
         app:layout_constraintStart_toStartOf="@+id/AdminLocationChip"
