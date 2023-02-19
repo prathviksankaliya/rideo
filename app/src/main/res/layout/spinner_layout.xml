@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:paddingVertical="@dimen/_4mdp"
+        android:paddingHorizontal="@dimen/_8mdp"
+        android:textSize="@dimen/_14font_mdp"
+        android:textColor="@color/black"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:fontFamily="@font/opensanssemibold"
+         />

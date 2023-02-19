@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationBarView;
+import com.itcraftsolution.raido.Fragments.AgentDetailFragment;
 import com.itcraftsolution.raido.Fragments.AgentHomeFragment;
 import com.itcraftsolution.raido.Fragments.AgentNotificationFragment;
 import com.itcraftsolution.raido.Fragments.AgentProfileFragment;
@@ -29,7 +30,7 @@ public class AgentRideActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frMainContainer, new AgentHomeFragment()).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frMainContainer, new AgentDetailFragment()).addToBackStack(null).commit();
         binding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

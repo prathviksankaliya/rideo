@@ -28,4 +28,23 @@ public class SpfUserData {
     {
         return context.getSharedPreferences("UserLoginDetails", Context.MODE_PRIVATE);
     }
+
+    public void setSpfAgentRideDetails(String carName, String vehicalNumber, String phoneNumber, String date, String emptySeats, String totalJourney, String time)
+    {
+        SharedPreferences setSpfUserLoginDetails = context.getSharedPreferences("AgentRideDetails", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = setSpfUserLoginDetails.edit();
+        editor.putString("agentCarName", carName);
+        editor.putString("agentVehicalNumber", vehicalNumber);
+        editor.putString("agentPhoneNumber", phoneNumber);
+        editor.putString("agentDate", date);
+        editor.putString("agentEmptySeats", emptySeats);
+        editor.putString("agentTotalJourney", totalJourney);
+        editor.putString("agentTime", time);
+        editor.apply();
+    }
+
+    public SharedPreferences getSpfAgentRideDetails()
+    {
+        return context.getSharedPreferences("AgentRideDetails", Context.MODE_PRIVATE);
+    }
 }

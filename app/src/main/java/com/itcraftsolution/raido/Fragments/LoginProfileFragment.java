@@ -2,6 +2,7 @@ package com.itcraftsolution.raido.Fragments;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,8 +37,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.itcraftsolution.raido.Activity.MainActivity;
 import com.itcraftsolution.raido.Models.LoginDetails;
 import com.itcraftsolution.raido.R;
 import com.itcraftsolution.raido.databinding.FragmentLoginProfileBinding;
@@ -57,13 +60,12 @@ public class LoginProfileFragment extends Fragment {
     private ActivityResultLauncher<String> getImageLauncher;
     private Uri photoUri;
     private static final int PERMISSION_ID = 44;
-    private String destPath, encodedImageString, userName, userEmail, userPhone, imageStorageUri    ;
+    private String destPath, encodedImageString, userName, userEmail, userPhone;
     private String gender = "Male";
     private Bitmap bitmap;
     private boolean checkImage = false;
     private GoogleSignInAccount account;
     private SpfUserData spfUserData;
-    private byte[] bytesOfImage;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private LoginDetails loginDetails;
@@ -127,7 +129,6 @@ public class LoginProfileFragment extends Fragment {
                     userEmail = binding.edLoginEmail.getText().toString();
                     spfUserData.setSpfUserLoginDetails(userName, encodedImageString, userEmail, userPhone, gender);
                     addImageToStorage();
-                    addDataToFirebaseDatabase();
                 }
             }
         });
@@ -164,7 +165,6 @@ public class LoginProfileFragment extends Fragment {
                     destPath = UUID.randomUUID().toString() + ".png";
 
                     UCrop.Options options = new UCrop.Options();
-
                     options.setCompressionFormat(Bitmap.CompressFormat.PNG);
                     options.setCircleDimmedLayer(true);
                     options.setCompressionQuality(90);
@@ -179,19 +179,14 @@ public class LoginProfileFragment extends Fragment {
 
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), photoUri);
-                        encodeBitmapImage(bitmap);
+//                        encodeBitmapImage(bitmap);
+                        ByteArrayOutputStream byteArrayOutputStream= new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 70, byteArrayOutputStream);
+                        binding.igLoginPic.setImageBitmap(bitmap);
+                        checkImage = true;
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-//                    try {
-//                        InputStream inputStream = requireContext().getContentResolver().openInputStream(photoUri);
-//                        bitmap = BitmapFactory.decodeStream(inputStream);
-//                        encodeBitmapImageString(bitmap);
-//
-//
-//                    } catch (FileNotFoundException e) {
-//                        throw new RuntimeException(e);
-//                    }
                 }
             }
         });
@@ -211,7 +206,7 @@ public class LoginProfileFragment extends Fragment {
         ByteArrayOutputStream byteArrayOutputStream= new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 70, byteArrayOutputStream);
         binding.igLoginPic.setImageBitmap(bitmap);
-        bytesOfImage =byteArrayOutputStream.toByteArray();
+        byte [] bytesOfImage =byteArrayOutputStream.toByteArray();
         encodedImageString = android.util.Base64.encodeToString(bytesOfImage, Base64.DEFAULT);
         checkImage = true;
     }
@@ -247,15 +242,15 @@ public class LoginProfileFragment extends Fragment {
     private void addImageToStorage()
     {
         storageReference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid())
-                .putBytes(bytesOfImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                .putFile(photoUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
                         storageReference.child(auth.getCurrentUser().getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                imageStorageUri = uri.toString();
-                                Toast.makeText(requireContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
+                                loginDetails = new LoginDetails(userName, String.valueOf(uri), userEmail, userPhone, gender);
+                                addDataToFirebaseDatabase();
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -264,6 +259,12 @@ public class LoginProfileFragment extends Fragment {
                                 Toast.makeText(requireContext(), "Image download fail: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                        float percent = (100 * snapshot.getBytesTransferred()/ snapshot.getTotalByteCount());
+                        dialog.setMessage("Uploaded: " + (int)percent + " %");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -277,7 +278,6 @@ public class LoginProfileFragment extends Fragment {
     private void addDataToFirebaseDatabase()
     {
 
-        loginDetails = new LoginDetails(userName, imageStorageUri, userEmail, userPhone, gender);
         databaseReference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(loginDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -285,8 +285,8 @@ public class LoginProfileFragment extends Fragment {
                 {
                     Toast.makeText(requireContext(), "Login Successfully!!", Toast.LENGTH_LONG).show();
                     dialog.dismiss();
-//                    startActivity(new Intent(requireContext(), MainActivity.class));
-//                    requireActivity().finishAffinity();
+                    startActivity(new Intent(requireContext(), MainActivity.class));
+                    requireActivity().finishAffinity();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

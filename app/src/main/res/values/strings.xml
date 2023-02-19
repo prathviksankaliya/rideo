@@ -4,4 +4,40 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="firebaseClientId">535967565164-7i5gujdvs4jlf3u9p2e26kni7pfioqnn.apps.googleusercontent.com</string>
     <string name="register">Don\'t have an account? <font color="#228D57"><b>Sign up</b></font></string>
+
+
+
+
+
+
+
+    <string-array name="array_gujarat_districts_source">
+        <item>Source</item>
+        <item>Ahmedabad</item><item>Amreli</item><item>Anand</item><item>Aravalli</item><item>Banaskantha</item><item>Bharuch</item>
+        <item>Bhavnagar</item><item>Botad</item><item>Chhota Udaipur</item><item>Dahod</item><item>Dang</item><item>Devbhoomi Dwarka</item>
+        <item>Gandhinagar</item><item>Gir Somnath</item><item>Jamnagar</item><item>Junagadh</item><item>Kheda</item><item>Kutch</item>
+        <item>Mahisagar</item><item>Mehsana</item><item>Morbi</item><item>Narmada</item><item>Navsari</item><item>Panchmahal</item>
+        <item>Patan</item><item>Porbandar</item><item>Rajkot</item><item>Sabarkantha</item><item>Surat</item><item>Surendranagar</item>
+        <item>Tapi</item><item>Vadodara</item><item>Valsad</item>
+    </string-array>
+
+    <string-array name="array_gujarat_districts_destination">
+        <item>Destination</item>
+        <item>Ahmedabad</item><item>Amreli</item><item>Anand</item><item>Aravalli</item><item>Banaskantha</item><item>Bharuch</item>
+        <item>Bhavnagar</item><item>Botad</item><item>Chhota Udaipur</item><item>Dahod</item><item>Dang</item><item>Devbhoomi Dwarka</item>
+        <item>Gandhinagar</item><item>Gir Somnath</item><item>Jamnagar</item><item>Junagadh</item><item>Kheda</item><item>Kutch</item>
+        <item>Mahisagar</item><item>Mehsana</item><item>Morbi</item><item>Narmada</item><item>Navsari</item><item>Panchmahal</item>
+        <item>Patan</item><item>Porbandar</item><item>Rajkot</item><item>Sabarkantha</item><item>Surat</item><item>Surendranagar</item>
+        <item>Tapi</item><item>Vadodara</item><item>Valsad</item>
+    </string-array>
+
+    <string-array name="array_gujarat_districts_Journey_location">
+        <item>Journey Locations</item>
+        <item>Ahmedabad</item><item>Amreli</item><item>Anand</item><item>Aravalli</item><item>Banaskantha</item><item>Bharuch</item>
+        <item>Bhavnagar</item><item>Botad</item><item>Chhota Udaipur</item><item>Dahod</item><item>Dang</item><item>Devbhoomi Dwarka</item>
+        <item>Gandhinagar</item><item>Gir Somnath</item><item>Jamnagar</item><item>Junagadh</item><item>Kheda</item><item>Kutch</item>
+        <item>Mahisagar</item><item>Mehsana</item><item>Morbi</item><item>Narmada</item><item>Navsari</item><item>Panchmahal</item>
+        <item>Patan</item><item>Porbandar</item><item>Rajkot</item><item>Sabarkantha</item><item>Surat</item><item>Surendranagar</item>
+        <item>Tapi</item><item>Vadodara</item><item>Valsad</item>
+    </string-array>
 </resources>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/agentHomeMainLayout"
     tools:context=".Fragments.AgentHomeFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -69,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_13mdp"
             android:fontFamily="@font/opensansbold"
-            android:text="Add Your Car"
+            android:text="Add Your Ride"
             android:textColor="@color/black"
             android:textSize="@dimen/_19font_mdp"
             app:layout_constraintEnd_toEndOf="@+id/txAdminHomeRate"
@@ -166,83 +167,91 @@
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout4"
-            style="@style/iconColor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12mdp"
-            android:hint="Empty Seats"
-            android:textColorHint="@color/lightBlack"
-            app:layout_constraintEnd_toEndOf="@+id/txAdminHomeRate"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/txAdminDate">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout4"
+                style="@style/iconColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12mdp"
+                android:hint="Empty Seats"
+                android:textColorHint="@color/lightBlack"
+                app:layout_constraintEnd_toEndOf="@+id/txAdminHomeRate"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/cardView"
+                app:layout_constraintTop_toBottomOf="@+id/txAdminDate">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edAdminSeats"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/opensanssemibold"
-                android:inputType="number"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edAdminSeats"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/opensanssemibold"
+                    android:inputType="number"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout5"
-            style="@style/iconColor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12mdp"
-            android:hint="Total Journey Hours"
-            android:textColorHint="@color/lightBlack"
-            app:layout_constraintEnd_toEndOf="@+id/txAdminHomeRate"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
+            <LinearLayout
+                android:id="@+id/linearLayout12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_12mdp"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout4"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edAdminHours"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/opensanssemibold"
-                android:inputType="number"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout5"
+                    style="@style/iconColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="Total Journey Hours"
+                    android:layout_marginEnd="@dimen/_4mdp"
+                    android:textColorHint="@color/lightBlack"
+                    app:layout_constraintStart_toStartOf="@+id/cardView"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/opensanssemibold"
-            android:text="Car Photos"
-            android:layout_marginTop="@dimen/_16mdp"
-            android:textSize="@dimen/_18font_mdp"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout4"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edAdminHours"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/opensanssemibold"
+                        android:inputType="number"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnAdminCarImageUpload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upload"
-            android:fontFamily="@font/opensansbold"
-            android:padding="@dimen/_8mdp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView5"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
-            app:layout_constraintTop_toTopOf="@+id/textView5" />
+                <Spinner
+                    android:id="@+id/spAdminTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50mdp"
+                    android:layout_weight="1"
+                    />
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/btnAdminHomeNext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Next"
-            android:fontFamily="@font/opensansbold"
-            android:layout_marginTop="@dimen/_20mdp"
-            android:paddingVertical="@dimen/_9mdp"
-            app:layout_constraintEnd_toEndOf="@+id/btnAdminCarImageUpload"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <Button
+                android:id="@+id/btnAdminHomeNext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_12mdp"
+                android:fontFamily="@font/opensansbold"
+                android:paddingVertical="@dimen/_9mdp"
+                android:text="Next"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout12"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout12"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout12" />
+
+            <TextView
+                android:id="@+id/txResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12mdp"
+                android:text="result"
+                android:textSize="@dimen/_15font_mdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/btnAdminHomeNext"
+                app:layout_constraintStart_toStartOf="@+id/btnAdminHomeNext"
+                app:layout_constraintTop_toBottomOf="@+id/btnAdminHomeNext" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

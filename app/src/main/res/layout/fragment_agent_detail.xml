@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_16mdp"
         android:layout_marginTop="@dimen/_16mdp"
-        android:hint="Source"
         android:textColorHint="@color/lightBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -42,13 +41,21 @@
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <Spinner
+        android:id="@+id/spAdminSource"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout3"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+        app:layout_constraintTop_toTopOf="@+id/textInputLayout3" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout6"
         style="@style/iconColor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_12mdp"
-        android:hint="Destination"
         android:textColorHint="@color/lightBlack"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
         app:layout_constraintHorizontal_bias="0.5"
@@ -64,6 +71,15 @@
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <Spinner
+        android:id="@+id/spAdminDestination"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout6"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout6"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout6"
+        app:layout_constraintTop_toTopOf="@+id/textInputLayout6" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout7"
         style="@style/iconColor"
@@ -71,7 +87,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_12mdp"
         android:layout_marginEnd="@dimen/_8mdp"
-        android:hint="Journey locations"
         android:textColorHint="@color/lightBlack"
         app:layout_constraintEnd_toStartOf="@+id/btnAdminJourneyAdd"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout6"
@@ -85,6 +100,15 @@
             android:inputType="text"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/spAdminJourneyLoc"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout7"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout7"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout7"
+        app:layout_constraintTop_toTopOf="@+id/textInputLayout7" />
 
     <Button
         android:id="@+id/btnAdminJourneyAdd"
