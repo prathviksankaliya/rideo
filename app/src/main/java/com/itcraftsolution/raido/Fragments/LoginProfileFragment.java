@@ -54,6 +54,8 @@ import com.yalantis.ucrop.UCrop;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -77,7 +79,7 @@ public class LoginProfileFragment extends Fragment {
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
     private ProgressDialog dialog;
-    private String spLoginUser[] = {"Car Rider", "Car Agent"};
+    private List<String> spLoginUser = Arrays.asList("Car Rider", "Car Agent");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -327,12 +329,12 @@ public class LoginProfileFragment extends Fragment {
     }
 
     private void spinnerProfile(){
-        ArrayAdapter adapter = new ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, spLoginUser);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_layout, spLoginUser);
         binding.spUserProfile.setAdapter(adapter);
         binding.spUserProfile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                userType = spLoginUser[i];
+                userType = spLoginUser.get(i);
             }
 
             @Override

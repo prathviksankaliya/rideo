@@ -190,7 +190,24 @@
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+
+            <Button
+                android:id="@+id/btnAdminHomeNext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_12mdp"
+                android:fontFamily="@font/opensansbold"
+                android:paddingVertical="@dimen/_9mdp"
+                android:text="Next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout4"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+<!-- <LinearLayout
                 android:id="@+id/linearLayout12"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -227,24 +244,7 @@
                     android:layout_height="@dimen/_50mdp"
                     android:layout_weight="1"
                     />
-            </LinearLayout>
-
-
-            <Button
-                android:id="@+id/btnAdminHomeNext"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_12mdp"
-                android:fontFamily="@font/opensansbold"
-                android:paddingVertical="@dimen/_9mdp"
-                android:text="Next"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout12"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout12"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout12" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+            </LinearLayout>-->
 
 <!--
             <TextView

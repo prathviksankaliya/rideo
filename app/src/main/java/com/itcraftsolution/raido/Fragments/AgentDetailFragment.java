@@ -1,17 +1,18 @@
 package com.itcraftsolution.raido.Fragments;
 
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,10 +28,15 @@ import com.itcraftsolution.raido.R;
 import com.itcraftsolution.raido.databinding.FragmentAgentDetailBinding;
 import com.itcraftsolution.raido.spf.SpfUserData;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
-public class AgentDetailFragment extends Fragment {
+public class
+AgentDetailFragment extends Fragment {
 
     private FragmentAgentDetailBinding binding;
     private ArrayList<String> arrayList;
@@ -82,6 +88,41 @@ public class AgentDetailFragment extends Fragment {
             }
         });
 
+        binding.txAdminRideArrivalTIme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int min = c.get(Calendar.MINUTE);
+                TimePickerDialog timePickerDialog = new TimePickerDialog(requireContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        binding.txAdminRideArrivalTIme.setText(timePicker.getHour() + " : " + timePicker.getMinute());
+                    }
+                }, hour, min, false);
+
+                timePickerDialog.show();
+            }
+        });
+
+        binding.txAdminRideDepTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int min = c.get(Calendar.MINUTE);
+                TimePickerDialog timePickerDialog = new TimePickerDialog(requireContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        binding.txAdminRideDepTime.setText(i + " : " + i1);
+
+                    }
+                }, hour, min, false);
+
+                timePickerDialog.show();
+            }
+        });
+
         binding.spAdminJourneyLoc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -126,7 +167,7 @@ public class AgentDetailFragment extends Fragment {
                             .setTextColor(getResources().getColor(R.color.white))
                             .show();
                         binding.txAdminJourneySource.requestFocus();
-                }else if(selectedDistrictSource.equals("Destination")){
+                }else if(selectedDistrictDestination.equals("Destination")){
                     Snackbar.make(binding.mainAgentDetails,"Please Select Destination City!!", Snackbar.LENGTH_LONG)
                             .setBackgroundTint(getResources().getColor(R.color.red))
                             .setTextColor(getResources().getColor(R.color.white))
@@ -138,20 +179,34 @@ public class AgentDetailFragment extends Fragment {
                             .setTextColor(getResources().getColor(R.color.white))
                             .show();
                     binding.txAdminRidePrice.requestFocus();
+                }else if(binding.txAdminRideArrivalTIme.getText().toString().length() < 3){
+                    Snackbar.make(binding.txAdminRideArrivalTIme,"Please set Arrival Time!!", Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(getResources().getColor(R.color.red))
+                            .setTextColor(getResources().getColor(R.color.white))
+                            .show();
+                    binding.txAdminRideArrivalTIme.requestFocus();
+                }else if(binding.txAdminRideDepTime.getText().toString().length() < 3){
+                    Snackbar.make(binding.txAdminRideDepTime,"Please set Departure Time!!", Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(getResources().getColor(R.color.red))
+                            .setTextColor(getResources().getColor(R.color.white))
+                            .show();
+                    binding.txAdminRideDepTime.requestFocus();
                 }else{
                     String carName = spfUserData.getSpfAgentRideDetails().getString("agentCarName", null);
                     String vehicalNumber = spfUserData.getSpfAgentRideDetails().getString("agentVehicalNumber", null);
                     String phoneNumber = spfUserData.getSpfAgentRideDetails().getString("agentPhoneNumber", null);
                     String journeyDate = spfUserData.getSpfAgentRideDetails().getString("agentDate", null);
                     String emptySeats = spfUserData.getSpfAgentRideDetails().getString("agentEmptySeats", null);
-                    String totalJourney = spfUserData.getSpfAgentRideDetails().getString("agentTotalJourney", null);
                     String time = spfUserData.getSpfAgentRideDetails().getString("agentTime", null);
                     String ridePrice = binding.txAdminRidePrice.getText().toString();
+                    String arrivalTime = binding.txAdminRideArrivalTIme.getText().toString();
+                    String depTime = binding.txAdminRideDepTime.getText().toString();
+                    String totalJourney = totalJourneyHours(arrivalTime, depTime);
                     String journeyLocs = showSelections();
                     spfUserData.setSpfAgentRideDetails(carName, vehicalNumber, phoneNumber, journeyDate, emptySeats, totalJourney, time,
-                            selectedDistrictSource, selectedDistrictDestination, ridePrice, journeyLocs);
+                            selectedDistrictSource, selectedDistrictDestination,arrivalTime, depTime,  ridePrice, journeyLocs, Objects.requireNonNull(auth.getCurrentUser()).getUid());
                     agentDetails = new AgentDetails(carName, vehicalNumber, phoneNumber, journeyDate, emptySeats, totalJourney, time,
-                            selectedDistrictSource, selectedDistrictDestination,ridePrice, journeyLocs);
+                            selectedDistrictSource, selectedDistrictDestination,arrivalTime, depTime,ridePrice, journeyLocs, Objects.requireNonNull(auth.getCurrentUser()).getUid());
                     addDataIntoFirebaseDatabase();
                 }
 
@@ -190,8 +245,9 @@ public class AgentDetailFragment extends Fragment {
         selectedDistrictSource = null;
     }
 
+//    roots --
     private void addDataIntoFirebaseDatabase(){
-        databaseReference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(agentDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+        databaseReference.child("Roots").child(selectedDistrictSource + "_" + selectedDistrictDestination).child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(agentDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
@@ -205,5 +261,30 @@ public class AgentDetailFragment extends Fragment {
                 Toast.makeText(requireContext(), ""+ e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private String totalJourneyHours(String arrival, String dep){
+        Date date1, date2;
+        int days, hours, min;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh : mm");
+
+        try {
+             date1 = simpleDateFormat.parse(arrival);
+             date2 = simpleDateFormat.parse(dep);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        long difference = date2.getTime() - date1.getTime();
+        days = (int) (difference / (1000*60*60*24));
+        hours = (int) ((difference - (1000*60*60*24*days)) / (1000*60*60));
+        min = (int) (difference - (1000*60*60*24*days) - (1000*60*60*hours)) / (1000*60);
+        hours = (hours < 0 ? -hours : hours);
+        if(min < 0){
+            hours = 23 - hours;
+            min = 60 - Math.abs(min);
+        }
+        return hours +" : "+ min;
+
     }
 }

@@ -3,17 +3,14 @@ package com.itcraftsolution.raido.Fragments;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
@@ -29,15 +26,17 @@ import com.itcraftsolution.raido.databinding.FragmentAgentHomeBinding;
 import com.itcraftsolution.raido.spf.SpfUserData;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
 public class AgentHomeFragment extends Fragment {
 
     private FragmentAgentHomeBinding binding;
-    private String [] spTime = {"Hours ", "Minutes", "Days"};
+    private List<String> spTime = Arrays.asList("Hours ", "Minutes", "Days");
     private String time;
     private SpfUserData spfUserData;
     private FirebaseAuth auth;
@@ -116,19 +115,20 @@ public class AgentHomeFragment extends Fragment {
                             .setTextColor(getResources().getColor(R.color.white))
                             .show();
                     binding.edAdminSeats.requestFocus();
-                }else if(binding.edAdminHours.getText().toString().isEmpty() || Integer.parseInt(binding.edAdminSeats.getText().toString()) == 0){
-                    Snackbar.make(binding.agentHomeMainLayout,"Please enter valid Journey Time", Snackbar.LENGTH_LONG)
-                            .setBackgroundTint(getResources().getColor(R.color.red))
-                            .setTextColor(getResources().getColor(R.color.white))
-                            .show();
-                    binding.edAdminHours.requestFocus();
-                }else{
+                }
+//                else if(binding.edAdminHours.getText().toString().isEmpty() || Integer.parseInt(binding.edAdminSeats.getText().toString()) == 0){
+//                    Snackbar.make(binding.agentHomeMainLayout,"Please enter valid Journey Time", Snackbar.LENGTH_LONG)
+//                            .setBackgroundTint(getResources().getColor(R.color.red))
+//                            .setTextColor(getResources().getColor(R.color.white))
+//                            .show();
+//                    binding.edAdminHours.requestFocus();
+//                }
+                else{
                     String carName = binding.edAdminCarName.getText().toString();
                     String vehicleNumber = binding.edAdminVehicalNumber.getText().toString();
                     String phoneNumber = binding.edAdminNumber.getText().toString();
                     String date = binding.edAdminHomeDate.getText().toString();
                     String emptySeat = binding.edAdminSeats.getText().toString();
-                    String totalJourney = binding.edAdminHours.getText().toString();
 //                    binding.txResult.setText("car Name : " + carName +"\n" +
 //                            "Vehical Number : " + vehicleNumber +"\n" +
 //                            "Phone number : " + phoneNumber +"\n" +
@@ -136,7 +136,7 @@ public class AgentHomeFragment extends Fragment {
 //                            "Empty Seats : " + emptySeat +"\n" +
 //                            "total Journey : " + totalJourney +"\n" +
 //                            "time : " + time +"\n");
-                    spfUserData.setSpfAgentRideDetails(carName, vehicleNumber, phoneNumber, date, emptySeat, totalJourney, time, null, null, null, null);
+                    spfUserData.setSpfAgentRideDetails(carName, vehicleNumber, phoneNumber, date, emptySeat, null,time, null, null, null, null, null, null, null);
                     getParentFragmentManager().beginTransaction().replace(R.id.frMainContainer, new AgentDetailFragment()).addToBackStack(null).commit();
 
                 }
@@ -148,25 +148,25 @@ public class AgentHomeFragment extends Fragment {
 
         return binding.getRoot();
     }
-    private void spinnerTime(){
-        ArrayAdapter ad = new ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, spTime);
-        binding.spAdminTime.setAdapter(ad);
-        binding.spAdminTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                time = spTime[i];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        String currentDate = simpleDateFormat.format(new Date());
-        binding.edAdminHomeDate.setText(currentDate);
-    }
+//    private void spinnerTime(){
+//        ArrayAdapter<String> ad = new ArrayAdapter<String>(requireContext(), R.layout.spinner_layout, spTime);
+//        binding.spAdminTime.setAdapter(ad);
+//        binding.spAdminTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                time = spTime.get(i);
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
+//
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+//        String currentDate = simpleDateFormat.format(new Date());
+//        binding.edAdminHomeDate.setText(currentDate);
+//    }
 
     private void loadProfileData(){
         databaseReference.child("AgentLoginDetails").child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).addValueEventListener(new ValueEventListener() {
@@ -191,8 +191,11 @@ public class AgentHomeFragment extends Fragment {
             }
 
         });
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String currentDate = simpleDateFormat.format(new Date());
+        binding.edAdminHomeDate.setText(currentDate);
 
-        spinnerTime();
+//        spinnerTime();
 
     }
 }

@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_6mdp"
-                android:fontFamily="@font/opensanssemibold"
+                android:fontFamily="@font/opensansbold"
                 android:text="XUV"
                 android:maxLines="1"
                 android:textSize="@dimen/_15font_mdp"
@@ -135,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_6mdp"
-                android:fontFamily="@font/opensanssemibold"
+                android:fontFamily="@font/opensansbold"
                 android:text="GJ 13 NN 3389"
                 android:maxLines="1"
                 android:textSize="@dimen/_15font_mdp"
@@ -213,6 +213,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensanssemibold"
             android:text="Arrival"
+            android:layout_gravity="center"
             android:textSize="@dimen/_12font_mdp"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -223,6 +224,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensansbold"
             android:text="22.35.00"
+            android:layout_gravity="center"
             android:maxLines="1"
             android:textSize="@dimen/_15font_mdp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
@@ -293,6 +295,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensanssemibold"
             android:text="Departure"
+            android:layout_gravity="center"
             android:textSize="@dimen/_12font_mdp"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -304,6 +307,7 @@
             android:fontFamily="@font/opensansbold"
             android:text="22.35.00"
             android:maxLines="1"
+            android:layout_gravity="center"
             android:textSize="@dimen/_15font_mdp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -321,11 +325,13 @@
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
 
-    <com.google.android.material.chip.ChipGroup
+    <TextView
         android:id="@+id/chGpRideDetailLocationChips"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8mdp"
+        android:textSize="@dimen/_18font_mdp"
+        android:fontFamily="@font/opensanssemibold"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout10"
         app:layout_constraintStart_toStartOf="@+id/textView21"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />

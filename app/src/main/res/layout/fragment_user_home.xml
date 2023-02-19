@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mainUserLayout"
     tools:context=".Fragments.UserHomeFragment">
 
     <androidx.cardview.widget.CardView
@@ -21,6 +22,7 @@
             android:id="@+id/igUserHomePic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="fitXY"
             android:src="@drawable/me" />
     </androidx.cardview.widget.CardView>
 
@@ -75,7 +77,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_6mdp"
                 android:layout_marginTop="@dimen/_12mdp"
-                android:hint="From"
                 android:textColorHint="@color/lightBlack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -91,13 +92,21 @@
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:id="@+id/spUserFrom"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayout9"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout9"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout9"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayout9" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout10"
                 style="@style/iconColor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8mdp"
-                android:hint="To"
                 android:textColorHint="@color/lightBlack"
                 app:layout_constraintEnd_toEndOf="@+id/textInputLayout9"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -113,6 +122,14 @@
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:id="@+id/spUserTo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayout10"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout10"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout10"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayout10" />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout11"
                 style="@style/iconColor"

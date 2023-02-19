@@ -56,7 +56,7 @@
         style="@style/iconColor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12mdp"
+        android:layout_marginTop="@dimen/_10mdp"
         android:textColorHint="@color/lightBlack"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
         app:layout_constraintHorizontal_bias="0.5"
@@ -87,7 +87,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Ride Price"
-        android:layout_marginTop="@dimen/_12mdp"
+        android:layout_marginTop="@dimen/_10mdp"
         android:textColorHint="@color/lightBlack"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
         app:layout_constraintHorizontal_bias="0.5"
@@ -104,16 +104,60 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout19"
+        style="@style/iconColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Ride Arrival Time"
+        android:layout_marginTop="@dimen/_10mdp"
+        android:textColorHint="@color/lightBlack"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout12">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txAdminRideArrivalTIme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/opensanssemibold"
+            android:inputType="number"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout13"
+        style="@style/iconColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Ride Departure Time"
+        android:textColorHint="@color/lightBlack"
+        android:layout_marginTop="@dimen/_10mdp"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout19">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txAdminRideDepTime"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/opensanssemibold"
+            android:inputType="number"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout7"
         style="@style/iconColor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12mdp"
         android:layout_marginEnd="@dimen/_8mdp"
+        android:layout_marginTop="@dimen/_10mdp"
         android:textColorHint="@color/lightBlack"
         app:layout_constraintEnd_toStartOf="@+id/btnAdminJourneyAdd"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout6"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout12">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout13">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txAdminJourneyLocChips"
