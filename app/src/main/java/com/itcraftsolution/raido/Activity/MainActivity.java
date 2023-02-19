@@ -11,6 +11,7 @@ import com.itcraftsolution.raido.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,20 +19,14 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.cdUserRide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, UserRideActivity.class);
-                startActivity(intent);
-            }
-        });
+        boolean isUserAgent = getIntent().getBooleanExtra("LoginUserOrAgent", false);
 
-        binding.cdAgentRide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AgentRideActivity.class);
-                startActivity(intent);
-            }
-        });
+
+        if(isUserAgent){
+            intent = new Intent(MainActivity.this, UserRideActivity.class);
+        }else{
+            intent = new Intent(MainActivity.this, AgentRideActivity.class);
+        }
+        startActivity(intent);
     }
 }

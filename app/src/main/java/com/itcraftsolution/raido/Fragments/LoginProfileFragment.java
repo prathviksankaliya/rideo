@@ -14,6 +14,8 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -40,7 +42,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.itcraftsolution.raido.Activity.AgentRideActivity;
 import com.itcraftsolution.raido.Activity.MainActivity;
+import com.itcraftsolution.raido.Activity.UserRideActivity;
 import com.itcraftsolution.raido.Models.LoginDetails;
 import com.itcraftsolution.raido.R;
 import com.itcraftsolution.raido.databinding.FragmentLoginProfileBinding;
@@ -60,7 +64,7 @@ public class LoginProfileFragment extends Fragment {
     private ActivityResultLauncher<String> getImageLauncher;
     private Uri photoUri;
     private static final int PERMISSION_ID = 44;
-    private String destPath, encodedImageString, userName, userEmail, userPhone;
+    private String destPath, encodedImageString, userName, userEmail, userPhone, userType;
     private String gender = "Male";
     private Bitmap bitmap;
     private boolean checkImage = false;
@@ -73,6 +77,7 @@ public class LoginProfileFragment extends Fragment {
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
     private ProgressDialog dialog;
+    private String spLoginUser[] = {"Car Rider", "Car Agent"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,13 +86,14 @@ public class LoginProfileFragment extends Fragment {
         binding = FragmentLoginProfileBinding.inflate(getLayoutInflater());
         spfUserData = new SpfUserData(requireContext());
 
+        spinnerProfile();
+
         displayLoginDetails();
         dialog = new ProgressDialog(requireContext());
         dialog.setMessage("Loading...");
         dialog.setCancelable(false);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("LoginDetails");
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference("UserImages");
         auth = FirebaseAuth.getInstance();
@@ -127,7 +133,7 @@ public class LoginProfileFragment extends Fragment {
                     userName = binding.edLoginName.getText().toString();
                     userPhone = binding.edLoginPhoneNumber.getText().toString();
                     userEmail = binding.edLoginEmail.getText().toString();
-                    spfUserData.setSpfUserLoginDetails(userName, encodedImageString, userEmail, userPhone, gender);
+                    spfUserData.setSpfUserLoginDetails(userName, encodedImageString, userEmail, userPhone, userType,gender);
                     addImageToStorage();
                 }
             }
@@ -249,8 +255,8 @@ public class LoginProfileFragment extends Fragment {
                         storageReference.child(auth.getCurrentUser().getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                loginDetails = new LoginDetails(userName, String.valueOf(uri), userEmail, userPhone, gender);
-                                addDataToFirebaseDatabase();
+                                loginDetails = new LoginDetails(userName, String.valueOf(uri), userEmail, userPhone,userType,0, gender);
+                                addDataToFirebaseDatabase(userType);
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -275,25 +281,63 @@ public class LoginProfileFragment extends Fragment {
         });
     }
 
-    private void addDataToFirebaseDatabase()
+    private void addDataToFirebaseDatabase(String userType)
     {
 
-        databaseReference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(loginDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(requireContext(), "Login Successfully!!", Toast.LENGTH_LONG).show();
-                    dialog.dismiss();
-                    startActivity(new Intent(requireContext(), MainActivity.class));
-                    requireActivity().finishAffinity();
+        if(Objects.equals(userType, "Car Agent")){
+            firebaseDatabase.getReference("LoginDetails").child("AgentLoginDetails").child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(loginDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful())
+                    {
+                        Toast.makeText(requireContext(), "Login Successfully!!", Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
+                        startActivity(new Intent(requireContext(), AgentRideActivity.class));
+                        requireActivity().finishAffinity();
+                    }
                 }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(requireContext(), "Database: "+e.getMessage(), Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+                }
+            });
+        }else{
+            firebaseDatabase.getReference("LoginDetails").child("UserLoginDetails").child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(loginDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful())
+                    {
+                        Toast.makeText(requireContext(), "Login Successfully!!", Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
+                        startActivity(new Intent(requireContext(), UserRideActivity.class));
+                        requireActivity().finishAffinity();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(requireContext(), "Database: "+e.getMessage(), Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+                }
+            });
+        }
+
+    }
+
+    private void spinnerProfile(){
+        ArrayAdapter adapter = new ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, spLoginUser);
+        binding.spUserProfile.setAdapter(adapter);
+        binding.spUserProfile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(requireContext(), "Database: "+e.getMessage(), Toast.LENGTH_LONG).show();
-                dialog.dismiss();
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                userType = spLoginUser[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }

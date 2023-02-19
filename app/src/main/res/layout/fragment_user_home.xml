@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/igUserHomePic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:src="@drawable/me" />
     </androidx.cardview.widget.CardView>
 
@@ -32,7 +32,7 @@
         android:fontFamily="@font/opensanssemibold"
         android:text="Prathvik"
         android:textColor="@color/black"
-        android:textSize="@dimen/_19font_mdp"
+        android:textSize="@dimen/_17font_mdp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="@+id/cardView" />

@@ -11,7 +11,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         >
 
         <TextView
@@ -62,8 +61,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/igLoginPic"
-                    android:layout_width="@dimen/_130mdp"
-                    android:layout_height="@dimen/_130mdp"
+                    android:layout_width="@dimen/_110mdp"
+                    android:layout_height="@dimen/_110mdp"
                     android:layout_marginTop="@dimen/_12mdp"
                     android:src="@drawable/me"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -80,10 +79,10 @@
                     android:src="@drawable/ic_baseline_edit_24"
                     app:layout_constraintBottom_toBottomOf="@+id/igLoginPic"
                     app:layout_constraintEnd_toEndOf="@+id/igLoginPic"
-                    app:layout_constraintHorizontal_bias="0.95"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/igLoginPic"
                     app:layout_constraintTop_toTopOf="@+id/igLoginPic"
-                    app:layout_constraintVertical_bias="0.95" />
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout3"
@@ -151,16 +150,26 @@
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <Spinner
+                    android:id="@+id/spUserProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40mdp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/_6mdp"
+                    app:layout_constraintEnd_toEndOf="@+id/textInputLayout8"
+                    app:layout_constraintStart_toStartOf="@+id/textInputLayout8"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
+
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10mdp"
                     android:fontFamily="@font/opensansbold"
                     android:text="Gender"
+                    android:layout_marginTop="@dimen/_12mdp"
                     android:textSize="@dimen/_16font_mdp"
                     app:layout_constraintStart_toStartOf="@+id/textInputLayout8"
-                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
+                    app:layout_constraintTop_toBottomOf="@+id/spUserProfile" />
 
                 <RadioGroup
                     android:id="@+id/loginRadioGroup"

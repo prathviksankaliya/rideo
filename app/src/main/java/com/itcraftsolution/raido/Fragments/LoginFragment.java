@@ -184,7 +184,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    spfUserData.setSpfUserLoginDetails(null, null, null, userNumber, null);
+                    spfUserData.setSpfUserLoginDetails(null, null, null, userNumber, null, null);
                     getParentFragmentManager().beginTransaction().replace(R.id.frLoginContainer,
                             new LoginProfileFragment()).addToBackStack(null).commit();
                 } else {
