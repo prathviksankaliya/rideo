@@ -38,18 +38,18 @@ public class DemoActivity extends AppCompatActivity {
         databaseReference = database.getReference("AgentRideDetails").child("Roots");
 
 
-        databaseReference.child(  "Ahmedabad_Amreli" ).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DemoModel model = snapshot.getValue(DemoModel.class);
-                Toast.makeText(DemoActivity.this, ""+model.getAgentId().toString(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        databaseReference.child(  "Ahmedabad_Amreli" ).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                DemoModel model = snapshot.getValue(DemoModel.class);
+//                Toast.makeText(DemoActivity.this, ""+model.getAgentId().toString(), Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         FirebaseRecyclerOptions<DemoModel> options =
                 new FirebaseRecyclerOptions.Builder<DemoModel>().setQuery(databaseReference.child(  "Ahmedabad_Amreli" ), DemoModel.class)

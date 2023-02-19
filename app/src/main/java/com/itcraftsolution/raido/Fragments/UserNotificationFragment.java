@@ -14,7 +14,6 @@ import com.itcraftsolution.raido.databinding.FragmentUserNotificationBinding;
 public class UserNotificationFragment extends Fragment {
 
     private FragmentUserNotificationBinding binding;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
