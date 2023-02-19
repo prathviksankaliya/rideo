@@ -52,75 +52,127 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout9"
-                style="@style/iconColor"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/linearlayout14"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_6mdp"
-                android:layout_marginTop="@dimen/_12mdp"
-                android:hint="Phone Number"
-                android:textColorHint="@color/lightBlack"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="@dimen/_8mdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edLoginPhoneNumber"
+
+                <LinearLayout
+                    android:id="@+id/llGetOpt"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:drawableStart="@drawable/baseline_call_24"
-                    android:drawablePadding="@dimen/_6mdp"
-                    android:fontFamily="@font/opensanssemibold"
-                    android:inputType="number"
-                    android:textColor="@color/black" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="@dimen/_8mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView13">
 
-            <in.aabhasjindal.otptextview.OtpTextView
-                android:id="@+id/otpView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_8mdp"
-                android:paddingHorizontal="@dimen/_3mdp"
-                android:paddingVertical="@dimen/_3mdp"
-                android:textColor="@color/green"
-                app:bar_active_color="@color/green"
-                app:bar_enabled="true"
-                app:bar_height="2dp"
-                app:height="40dp"
-                app:layout_constraintEnd_toEndOf="@+id/textInputLayout9"
-                app:layout_constraintStart_toStartOf="@+id/textInputLayout9"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout9"
-                app:length="6"
-                app:otp_text_size="24dp"
-                app:width="40dp" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout9"
+                        style="@style/iconColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12mdp"
+                        android:hint="Phone Number"
+                        android:textColorHint="@color/lightBlack"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView13">
 
-            <Button
-                android:id="@+id/btnLoginOtp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8mdp"
-                android:fontFamily="@font/opensansbold"
-                android:paddingVertical="@dimen/_10mdp"
-                android:text="Get OTP"
-                android:textSize="@dimen/_14font_mdp"
-                app:layout_constraintEnd_toEndOf="@+id/textInputLayout9"
-                app:layout_constraintStart_toStartOf="@+id/textInputLayout9"
-                app:layout_constraintTop_toBottomOf="@+id/otpView" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edLoginPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:drawableStart="@drawable/baseline_call_24"
+                            android:drawablePadding="@dimen/_6mdp"
+                            android:fontFamily="@font/opensanssemibold"
+                            android:inputType="number"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btnGetOtp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8mdp"
+                        android:fontFamily="@font/opensansbold"
+                        android:paddingVertical="@dimen/_10mdp"
+                        android:text="Get OTP"
+                        android:textSize="@dimen/_14font_mdp"
+                        app:layout_constraintEnd_toEndOf="@+id/textInputLayout9"
+                        app:layout_constraintStart_toStartOf="@+id/textInputLayout9"
+                        app:layout_constraintTop_toBottomOf="@+id/otpView" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/llVerifyOtp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_8mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+                    <in.aabhasjindal.otptextview.OtpTextView
+                        android:id="@+id/otpView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_8mdp"
+                        android:paddingHorizontal="@dimen/_3mdp"
+                        android:paddingVertical="@dimen/_3mdp"
+                        android:textColor="@color/green"
+                        app:bar_active_color="@color/green"
+                        app:bar_enabled="true"
+                        app:bar_height="2dp"
+                        app:height="40dp"
+                        app:layout_constraintEnd_toEndOf="@+id/textInputLayout9"
+                        app:layout_constraintStart_toStartOf="@+id/textInputLayout9"
+                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout9"
+                        app:length="6"
+                        app:otp_text_size="24dp"
+                        app:width="40dp" />
+
+                    <Button
+                        android:id="@+id/btnVerifyOtp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8mdp"
+                        android:fontFamily="@font/opensansbold"
+                        android:paddingVertical="@dimen/_10mdp"
+                        android:text="Verify OTP"
+                        android:textSize="@dimen/_14font_mdp"
+                        app:layout_constraintEnd_toEndOf="@+id/otpView"
+                        app:layout_constraintStart_toStartOf="@+id/otpView"
+                        app:layout_constraintTop_toBottomOf="@+id/otpView" />
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8mdp"
                 android:gravity="center"
+                android:layout_marginTop="@dimen/_16mdp"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="@+id/btnLoginOtp"
-                app:layout_constraintStart_toStartOf="@+id/btnLoginOtp"
-                app:layout_constraintTop_toBottomOf="@+id/btnLoginOtp">
+                app:layout_constraintEnd_toEndOf="@+id/linearlayout14"
+                app:layout_constraintStart_toStartOf="@+id/linearlayout14"
+                app:layout_constraintTop_toBottomOf="@+id/linearlayout14">
 
 
                 <View

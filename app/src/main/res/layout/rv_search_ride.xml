@@ -81,17 +81,33 @@
                 app:layout_constraintTop_toTopOf="@+id/textView15" />
 
         </LinearLayout>
-            <Button
-                android:id="@+id/btnRideBook"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/opensansbold"
-                android:paddingVertical="@dimen/_9mdp"
-                android:text="Book"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_weight="1"
-                app:layout_constraintBottom_toBottomOf="@+id/txUserRideCarName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txUserRideSeats" />
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensanssemibold"
+                    android:text="Price"
+                    android:textSize="@dimen/_15font_mdp"/>
+
+                <TextView
+                    android:id="@+id/txRidePrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensansbold"
+                    android:text="₹ 205"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_22font_mdp"/>
+            </LinearLayout>
+
         </LinearLayout>
 
 
@@ -169,14 +185,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_6mdp"
+            android:layout_marginStart="@dimen/_6mdp"
             android:fontFamily="@font/opensanssemibold"
             android:text="LBM, AHM, BRD"
-            android:layout_marginStart="@dimen/_6mdp"
             android:textSize="@dimen/_14font_mdp"
             app:layout_constraintBottom_toBottomOf="@+id/textView18"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toStartOf="@+id/btnRideBook"
             app:layout_constraintStart_toEndOf="@+id/textView18"
             app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+        <Button
+            android:id="@+id/btnRideBook"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/opensansbold"
+            android:paddingHorizontal="@dimen/_9mdp"
+            android:paddingVertical="@dimen/_9mdp"
+            android:text="Book"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
