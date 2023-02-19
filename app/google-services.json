@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "535967565164",
+    "project_id": "rideo-25155",
+    "storage_bucket": "rideo-25155.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535967565164:android:c0309ef5ef7c7424355f49",
+        "android_client_info": {
+          "package_name": "com.itcraftsolution.raido"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "535967565164-7i5gujdvs4jlf3u9p2e26kni7pfioqnn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8ShsCLc_0flaH4kAOk82tHhRNjgySc-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "535967565164-7i5gujdvs4jlf3u9p2e26kni7pfioqnn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
