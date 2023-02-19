@@ -1,22 +1,13 @@
 package com.itcraftsolution.raido.Fragments;
 
 import android.Manifest;
-import android.content.Intent;
+import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -24,11 +15,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.itcraftsolution.raido.Activity.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.itcraftsolution.raido.Models.LoginDetails;
 import com.itcraftsolution.raido.R;
 import com.itcraftsolution.raido.databinding.FragmentLoginProfileBinding;
 import com.itcraftsolution.raido.spf.SpfUserData;
@@ -36,8 +46,7 @@ import com.yalantis.ucrop.UCrop;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -48,12 +57,20 @@ public class LoginProfileFragment extends Fragment {
     private ActivityResultLauncher<String> getImageLauncher;
     private Uri photoUri;
     private static final int PERMISSION_ID = 44;
-    private String destPath, encodedImageString;
+    private String destPath, encodedImageString, userName, userEmail, userPhone, imageStorageUri    ;
     private String gender = "Male";
     private Bitmap bitmap;
     private boolean checkImage = false;
     private GoogleSignInAccount account;
     private SpfUserData spfUserData;
+    private byte[] bytesOfImage;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private LoginDetails loginDetails;
+    private FirebaseAuth auth;
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
+    private ProgressDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,8 +78,17 @@ public class LoginProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentLoginProfileBinding.inflate(getLayoutInflater());
         spfUserData = new SpfUserData(requireContext());
-        displayLoginDetails();
 
+        displayLoginDetails();
+        dialog = new ProgressDialog(requireContext());
+        dialog.setMessage("Loading...");
+        dialog.setCancelable(false);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("LoginDetails");
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference("UserImages");
+        auth = FirebaseAuth.getInstance();
         binding.btnLoginSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,15 +121,14 @@ public class LoginProfileFragment extends Fragment {
                             .show();
                     binding.igLoginPic.requestFocus();
                 }else {
-                    String userName = binding.edLoginName.getText().toString();
-                    String userPhone = binding.edLoginPhoneNumber.getText().toString();
-                    String userEmail = binding.edLoginEmail.getText().toString();
+                    dialog.show();
+                    userName = binding.edLoginName.getText().toString();
+                    userPhone = binding.edLoginPhoneNumber.getText().toString();
+                    userEmail = binding.edLoginEmail.getText().toString();
                     spfUserData.setSpfUserLoginDetails(userName, encodedImageString, userEmail, userPhone, gender);
-//                    getParentFragmentManager().beginTransaction().replace(R.id.frLoginContainer, new demoFragment()).commit();
-
+                    addImageToStorage();
+                    addDataToFirebaseDatabase();
                 }
-
-//                startActivity(new Intent(requireContext(), MainActivity.class));
             }
         });
 
@@ -153,14 +178,20 @@ public class LoginProfileFragment extends Fragment {
                             .start(requireContext(), LoginProfileFragment.this);
 
                     try {
-                        InputStream inputStream = requireContext().getContentResolver().openInputStream(photoUri);
-                        bitmap = BitmapFactory.decodeStream(inputStream);
-                        encodeBitmapImageString(bitmap);
-
-
-                    } catch (FileNotFoundException e) {
+                        bitmap = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), photoUri);
+                        encodeBitmapImage(bitmap);
+                    } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+//                    try {
+//                        InputStream inputStream = requireContext().getContentResolver().openInputStream(photoUri);
+//                        bitmap = BitmapFactory.decodeStream(inputStream);
+//                        encodeBitmapImageString(bitmap);
+//
+//
+//                    } catch (FileNotFoundException e) {
+//                        throw new RuntimeException(e);
+//                    }
                 }
             }
         });
@@ -175,12 +206,12 @@ public class LoginProfileFragment extends Fragment {
         ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_ID);
     }
 
-    private void encodeBitmapImageString(Bitmap bitmap)
-    {
+    private void encodeBitmapImage(Bitmap bitmap){
+
         ByteArrayOutputStream byteArrayOutputStream= new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 70, byteArrayOutputStream);
         binding.igLoginPic.setImageBitmap(bitmap);
-        byte[] bytesOfImage =byteArrayOutputStream.toByteArray();
+        bytesOfImage =byteArrayOutputStream.toByteArray();
         encodedImageString = android.util.Base64.encodeToString(bytesOfImage, Base64.DEFAULT);
         checkImage = true;
     }
@@ -212,5 +243,58 @@ public class LoginProfileFragment extends Fragment {
         byte[] encodeBytes = android.util.Base64.decode(encodeImageString, Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(encodeBytes, 0, encodeBytes.length);
         binding.igLoginPic.setImageBitmap(bitmap);
+    }
+    private void addImageToStorage()
+    {
+        storageReference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid())
+                .putBytes(bytesOfImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+                        storageReference.child(auth.getCurrentUser().getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                imageStorageUri = uri.toString();
+                                Toast.makeText(requireContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(requireContext(), "Image download fail: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(requireContext(), "Storage: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void addDataToFirebaseDatabase()
+    {
+
+        loginDetails = new LoginDetails(userName, imageStorageUri, userEmail, userPhone, gender);
+        databaseReference.child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(loginDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(requireContext(), "Login Successfully!!", Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+//                    startActivity(new Intent(requireContext(), MainActivity.class));
+//                    requireActivity().finishAffinity();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(requireContext(), "Database: "+e.getMessage(), Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+            }
+        });
     }
 }
