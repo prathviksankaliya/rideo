@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationBarView;
-import com.itcraftsolution.raido.Fragments.HomeFragment;
-import com.itcraftsolution.raido.Fragments.NotificationFragment;
-import com.itcraftsolution.raido.Fragments.ProfileFragment;
+import com.itcraftsolution.raido.Fragments.AgentHomeFragment;
+import com.itcraftsolution.raido.Fragments.AgentNotificationFragment;
+import com.itcraftsolution.raido.Fragments.AgentProfileFragment;
 import com.itcraftsolution.raido.R;
 import com.itcraftsolution.raido.databinding.ActivityAgentRideBinding;
 
@@ -29,22 +29,22 @@ public class AgentRideActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frMainContainer, new HomeFragment()).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frMainContainer, new AgentHomeFragment()).addToBackStack(null).commit();
         binding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment temp = null;
                 switch (item.getItemId()) {
                     case R.id.navHome:
-                        temp = new HomeFragment();
+                        temp = new AgentHomeFragment();
                         break;
 
                     case R.id.navNotification:
-                        temp = new NotificationFragment();
+                        temp = new AgentNotificationFragment();
                         break;
 
                     case R.id.navProfile:
-                        temp = new ProfileFragment();
+                        temp = new AgentProfileFragment();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frMainContainer, temp).addToBackStack(null).commit();

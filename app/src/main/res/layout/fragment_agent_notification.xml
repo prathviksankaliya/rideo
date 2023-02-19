@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.UserDetailRideFragment">
+    tools:context=".Fragments.AgentNotificationFragment">
 
     <ImageView
-        android:id="@+id/igActiveRideBack"
+        android:id="@+id/igAdminNotificationBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_14mdp"
@@ -21,27 +21,28 @@
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12mdp"
         android:layout_marginEnd="@dimen/_14mdp"
         android:fontFamily="@font/opensansbold"
-        android:text="Active Rides"
+        android:layout_marginStart="@dimen/_12mdp"
+        android:text="Notifications"
         android:textColor="@color/black"
         android:textSize="@dimen/_18font_mdp"
-        app:layout_constraintBottom_toBottomOf="@+id/igActiveRideBack"
+        app:layout_constraintBottom_toBottomOf="@+id/igAdminNotificationBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/igActiveRideBack"
-        app:layout_constraintTop_toTopOf="@+id/igActiveRideBack" />
+        app:layout_constraintStart_toEndOf="@+id/igAdminNotificationBack"
+        app:layout_constraintTop_toTopOf="@+id/igAdminNotificationBack" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvActiveRide"
+        android:id="@+id/rvAdminNotification"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        tools:listitem="@layout/rv_admin_notification"
         android:layout_marginTop="@dimen/_16mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        tools:listitem="@layout/rv_search_ride"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.UserCarBookFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="car booked" />
 
-</FrameLayout>
+        >
+
+    <ImageView
+        android:id="@+id/igUserRideHistoryBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_14mdp"
+        android:layout_marginTop="@dimen/_14mdp"
+        android:padding="@dimen/_4mdp"
+        android:src="@drawable/baseline_keyboard_backspace_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12mdp"
+        android:layout_marginEnd="@dimen/_14mdp"
+        android:fontFamily="@font/opensansbold"
+        android:text="Ride History"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_18font_mdp"
+        app:layout_constraintBottom_toBottomOf="@+id/igUserRideHistoryBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/igUserRideHistoryBack"
+        app:layout_constraintTop_toTopOf="@+id/igUserRideHistoryBack" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:fontFamily="@font/opensansbold"
+        android:text="Pending Rides"
+        android:textSize="@dimen/_17font_mdp"
+        app:layout_constraintStart_toStartOf="@+id/igUserRideHistoryBack"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRideHistoryPending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:fontFamily="@font/opensansbold"
+        android:text="Complete Rides"
+        android:textSize="@dimen/_17font_mdp"
+        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/rvRideHistoryPending" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRideHistoryComplete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8mdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

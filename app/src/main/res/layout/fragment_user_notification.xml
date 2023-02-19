@@ -7,7 +7,7 @@
     tools:context=".Fragments.UserNotificationFragment">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/igRideNotificationBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_14mdp"
@@ -27,16 +27,17 @@
         android:text="Ride Notifications"
         android:textColor="@color/black"
         android:textSize="@dimen/_18font_mdp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/igRideNotificationBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/igRideNotificationBack"
+        app:layout_constraintTop_toTopOf="@+id/igRideNotificationBack" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvUserNotification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_6mdp"
+        tools:listitem="@layout/rv_user_notification"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

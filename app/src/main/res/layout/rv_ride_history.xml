@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/_12mdp"
     app:cardElevation="@dimen/_12mdp"
-    android:layout_margin="@dimen/_7mdp"
-    >
+    android:layout_margin="@dimen/_7mdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_4mdp"
+        android:padding="@dimen/_6mdp"
         >
-
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/igAdminNotificationPic"
+            android:id="@+id/igUserHistoryPic"
             android:layout_width="@dimen/_42mdp"
             android:layout_height="@dimen/_42mdp"
             android:src="@drawable/me"
@@ -29,30 +27,30 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8mdp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/igAdminNotificationPic"
-            app:layout_constraintStart_toEndOf="@+id/igAdminNotificationPic"
-            app:layout_constraintTop_toTopOf="@+id/igAdminNotificationPic">
+            app:layout_constraintBottom_toBottomOf="@+id/igUserHistoryPic"
+            app:layout_constraintStart_toEndOf="@+id/igUserHistoryPic"
+            app:layout_constraintTop_toTopOf="@+id/igUserHistoryPic">
 
             <TextView
-                android:id="@+id/txAdminNotificationName"
+                android:id="@+id/txHistoryAdminName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/opensanssemibold"
                 android:text="Prathvik Sankaliya"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15font_mdp"
-                app:layout_constraintStart_toEndOf="@+id/igAdminNotificationPic"
-                app:layout_constraintTop_toTopOf="@+id/igAdminNotificationPic" />
+                app:layout_constraintStart_toEndOf="@+id/igUserHistoryPic"
+                app:layout_constraintTop_toTopOf="@+id/igUserHistoryPic" />
 
             <TextView
-                android:id="@+id/txAdminNotificationJourney"
+                android:id="@+id/txHistoryJourney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/opensansbold"
                 android:text="Journey: AHM - BRD"
                 android:textSize="@dimen/_14font_mdp"
-                app:layout_constraintStart_toEndOf="@+id/igAdminNotificationPic"
-                app:layout_constraintTop_toTopOf="@+id/igAdminNotificationPic" />
+                app:layout_constraintStart_toEndOf="@+id/igUserHistoryPic"
+                app:layout_constraintTop_toTopOf="@+id/igUserHistoryPic" />
 
         </LinearLayout>
 
@@ -67,7 +65,7 @@
             app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
 
         <TextView
-            android:id="@+id/txAdminNotiJourneyDate"
+            android:id="@+id/txHistoryRideDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensansbold"
@@ -85,11 +83,11 @@
             android:fontFamily="@font/opensanssemibold"
             android:text="Booked Seat"
             android:textSize="@dimen/_14font_mdp"
-            app:layout_constraintStart_toStartOf="@+id/igAdminNotificationPic"
-            app:layout_constraintTop_toBottomOf="@+id/igAdminNotificationPic" />
+            app:layout_constraintStart_toStartOf="@+id/igUserHistoryPic"
+            app:layout_constraintTop_toBottomOf="@+id/igUserHistoryPic" />
 
         <TextView
-            android:id="@+id/txAdminNotiBookSeats"
+            android:id="@+id/txHistoryBookSeats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensansbold"
@@ -106,57 +104,35 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensanssemibold"
             android:text="Payment Type "
+            android:layout_marginStart="@dimen/_8mdp"
             android:textSize="@dimen/_15font_mdp"
             app:layout_constraintBottom_toBottomOf="@+id/textView10"
-            app:layout_constraintEnd_toEndOf="@+id/textView7"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toTopOf="@+id/textView10" />
 
         <TextView
-            android:id="@+id/txAdminNotiPaymentType"
+            android:id="@+id/txHistoryPayment"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:fontFamily="@font/opensansbold"
             android:text="COD"
             android:textSize="@dimen/_15font_mdp"
-            app:layout_constraintBottom_toBottomOf="@+id/txAdminNotiBookSeats"
+            app:layout_constraintBottom_toBottomOf="@+id/txHistoryBookSeats"
             app:layout_constraintEnd_toEndOf="@+id/textView9"
             app:layout_constraintStart_toStartOf="@+id/textView9"
-            app:layout_constraintTop_toTopOf="@+id/txAdminNotiBookSeats" />
+            app:layout_constraintTop_toTopOf="@+id/txHistoryBookSeats" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_5mdp"
-            android:layout_marginVertical="@dimen/_7mdp"
-            app:layout_constraintEnd_toEndOf="@+id/textView9"
-            app:layout_constraintStart_toStartOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/txAdminNotiBookSeats">
-
-            <Button
-                android:id="@+id/btnAdminNotiCancle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingVertical="@dimen/_9mdp"
-                android:text="Cancel"
-                android:backgroundTint="@color/red"
-                android:fontFamily="@font/opensansbold"
-                android:layout_marginEnd="@dimen/_4mdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txAdminNotiBookSeats" />
-
-            <Button
-                android:id="@+id/btnAdminNotiAccept"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingVertical="@dimen/_9mdp"
-                android:fontFamily="@font/opensansbold"
-                android:text="Accept"
-                android:layout_marginStart="@dimen/_4mdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txAdminNotiBookSeats" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnHistoryRate"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/opensansbold"
+            android:paddingVertical="@dimen/_9mdp"
+            android:text="Rate"
+            app:layout_constraintBottom_toBottomOf="@+id/txHistoryPayment"
+            app:layout_constraintEnd_toEndOf="@+id/txHistoryRideDate"
+            app:layout_constraintTop_toTopOf="@+id/textView9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

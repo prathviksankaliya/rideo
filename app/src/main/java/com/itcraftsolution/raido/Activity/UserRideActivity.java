@@ -8,9 +8,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationBarView;
-import com.itcraftsolution.raido.Fragments.HomeFragment;
-import com.itcraftsolution.raido.Fragments.NotificationFragment;
-import com.itcraftsolution.raido.Fragments.ProfileFragment;
 import com.itcraftsolution.raido.Fragments.UserCarBookFragment;
 import com.itcraftsolution.raido.Fragments.UserHomeFragment;
 import com.itcraftsolution.raido.Fragments.UserNotificationFragment;

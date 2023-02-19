@@ -34,10 +34,9 @@
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensansbold"
+                    android:fontFamily="@font/opensanssemibold"
                     android:text="Car Type"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_16font_mdp"
+                    android:textSize="@dimen/_15font_mdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,33 +47,46 @@
                     android:fontFamily="@font/opensansbold"
                     android:maxLines="1"
                     android:text="XUV"
-                    android:textColor="@color/black"
+                    android:textColor="@color/green"
                     android:textSize="@dimen/_16font_mdp"
                     app:layout_constraintEnd_toEndOf="@+id/textView15"
                     app:layout_constraintStart_toStartOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView15" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/opensanssemibold"
+                android:text="Seats"
+                android:textSize="@dimen/_15font_mdp"/>
 
             <TextView
                 android:id="@+id/txRideSeats"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/opensansbold"
-                android:text="4 Seats"
+                android:text="4"
                 android:gravity="center"
-                android:layout_weight="1"
                 android:textColor="@color/green"
                 android:textSize="@dimen/_16font_mdp"
                 app:layout_constraintStart_toEndOf="@+id/textView15"
                 app:layout_constraintTop_toTopOf="@+id/textView15" />
 
+        </LinearLayout>
             <Button
                 android:id="@+id/btnRideBook"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/opensansbold"
-                android:paddingVertical="@dimen/_10mdp"
+                android:paddingVertical="@dimen/_9mdp"
                 android:text="Book"
                 android:layout_weight="1"
                 app:layout_constraintBottom_toBottomOf="@+id/txUserRideCarName"

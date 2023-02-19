@@ -18,13 +18,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/igUserHomePic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/me" />
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txUserHomeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8mdp"
@@ -160,7 +161,7 @@
                 android:id="@+id/btnSearchRide"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/_9mdp"
+                android:paddingVertical="@dimen/_10mdp"
                 android:text="Search Ride"
                 android:fontFamily="@font/opensansbold"
                 android:layout_marginTop="@dimen/_16mdp"

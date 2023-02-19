@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg4"
+    tools:context=".Fragments.LoginProfileFragment">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20mdp"
+        android:fontFamily="@font/opensansbold"
+        android:gravity="center"
+        android:text="Rideo"
+        android:textColor="@color/green"
+        android:textSize="@dimen/_26font_mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10mdp"
+        app:cardCornerRadius="@dimen/_12mdp"
+        app:cardElevation="@dimen/_12mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5mdp">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4mdp"
+                android:fontFamily="@font/opensansbold"
+                android:text="Manage Profile"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_22font_mdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/igLoginPic"
+                android:layout_width="@dimen/_130mdp"
+                android:layout_height="@dimen/_130mdp"
+                android:layout_marginTop="@dimen/_12mdp"
+                android:src="@drawable/me"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <ImageView
+                android:id="@+id/igLoginEditPic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_bg"
+                android:padding="@dimen/_5mdp"
+                android:src="@drawable/ic_baseline_edit_24"
+                app:layout_constraintBottom_toBottomOf="@+id/igLoginPic"
+                app:layout_constraintEnd_toEndOf="@+id/igLoginPic"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@+id/igLoginPic"
+                app:layout_constraintTop_toTopOf="@+id/igLoginPic"
+                app:layout_constraintVertical_bias="0.95" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout3"
+                style="@style/iconColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10mdp"
+                android:layout_marginTop="@dimen/_12mdp"
+                android:hint="Username"
+                android:textColorHint="@color/lightBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/igLoginPic">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edLoginName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/opensanssemibold"
+                    android:inputType="text"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/iconColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8mdp"
+                android:hint="Phone Number"
+                android:textColorHint="@color/lightBlack"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edLoginPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/opensanssemibold"
+                    android:inputType="number"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout8"
+                style="@style/iconColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8mdp"
+                android:hint="Email"
+                android:textColorHint="@color/lightBlack"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edLoginEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:enabled="false"
+                    android:fontFamily="@font/opensanssemibold"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10mdp"
+                android:fontFamily="@font/opensansbold"
+                android:text="Gender"
+                android:textSize="@dimen/_16font_mdp"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout8"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
+
+            <RadioGroup
+                android:id="@+id/loginRadioGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8mdp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout8"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/textView3">
+
+                <RadioButton
+                    android:id="@+id/rbLoginMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensanssemibold"
+                    android:text="Male"
+                    android:textSize="@dimen/_15font_mdp" />
+
+                <RadioButton
+                    android:id="@+id/rbLoginFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensanssemibold"
+                    android:text="Female"
+                    android:textSize="@dimen/_15font_mdp" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btnLoginSaveProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10mdp"
+                android:fontFamily="@font/opensansbold"
+                android:paddingVertical="@dimen/_10mdp"
+                android:text="Save Profile"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout8"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout8"
+                app:layout_constraintTop_toBottomOf="@+id/loginRadioGroup" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

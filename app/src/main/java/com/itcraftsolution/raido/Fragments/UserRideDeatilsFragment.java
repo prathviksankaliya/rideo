@@ -1,6 +1,5 @@
 package com.itcraftsolution.raido.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,21 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.itcraftsolution.raido.Activity.MainActivity;
-import com.itcraftsolution.raido.R;
-import com.itcraftsolution.raido.databinding.FragmentUserHomeBinding;
-import com.itcraftsolution.raido.databinding.FragmentUserProfileBinding;
+import com.itcraftsolution.raido.databinding.FragmentUserRideDeatilsBinding;
 
-public class UserProfileFragment extends Fragment {
+public class UserRideDeatilsFragment extends Fragment {
 
-    private FragmentUserProfileBinding binding;
+    private FragmentUserRideDeatilsBinding binding;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentUserProfileBinding.inflate(getLayoutInflater());
-
+        binding = FragmentUserRideDeatilsBinding.inflate(getLayoutInflater());
 
         return binding.getRoot();
     }

@@ -10,21 +10,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.itcraftsolution.raido.Activity.MainActivity;
-import com.itcraftsolution.raido.R;
-import com.itcraftsolution.raido.databinding.FragmentUserHomeBinding;
-import com.itcraftsolution.raido.databinding.FragmentUserProfileBinding;
+import com.itcraftsolution.raido.databinding.FragmentLoginProfileBinding;
 
-public class UserProfileFragment extends Fragment {
+public class LoginProfileFragment extends Fragment {
 
-    private FragmentUserProfileBinding binding;
+    private FragmentLoginProfileBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentUserProfileBinding.inflate(getLayoutInflater());
-
-
+        binding = FragmentLoginProfileBinding.inflate(getLayoutInflater());
+        binding.btnLoginSaveProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireContext(), MainActivity.class));
+            }
+        });
         return binding.getRoot();
     }
 }

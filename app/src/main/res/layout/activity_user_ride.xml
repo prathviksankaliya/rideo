@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"
-        tools:layout="@layout/fragment_notification" />
+        tools:layout="@layout/fragment_user_home" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bNavUser"
